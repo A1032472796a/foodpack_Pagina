@@ -163,6 +163,36 @@ footer {
   z-index: 0;
 }
 
+/* ── Página Contactanos ── */
+.form-card {
+  background: rgba(151,196,89,0.045);
+  border: 0.5px solid rgba(151,196,89,0.16);
+}
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(151,196,89,0.18);
+  border-radius: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.35); }
+.form-input:focus {
+  outline: none;
+  border-color: var(--green-mid);
+  background: rgba(255,255,255,0.08);
+}
+.form-input option { background: #0A1F12; color: #fff; }
+.social-btn { transition: transform 0.15s ease, filter 0.15s ease; }
+.social-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.map-card {
+  background: rgba(151,196,89,0.08);
+  border: 0.5px solid rgba(151,196,89,0.2);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .char-span, .fade-in-el, .reveal { transition: none !important; }
 }
