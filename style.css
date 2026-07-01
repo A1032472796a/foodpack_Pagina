@@ -118,6 +118,29 @@ footer {
   background: linear-gradient(180deg, rgba(23,52,4,0.55) 0%, rgba(23,52,4,0.18) 45%, transparent 100%);
 }
 
+/* ── Página Nosotros ── */
+.stats-bar {
+  background: linear-gradient(135deg, rgba(13,41,82,0.92) 0%, rgba(23,52,4,0.88) 100%);
+  border-top: 1px solid rgba(151,196,89,0.15);
+  border-bottom: 1px solid rgba(151,196,89,0.15);
+}
+.story-graphic {
+  background: linear-gradient(135deg, var(--green-dark), var(--navy));
+}
+.icon-tile-green { background: rgba(151,196,89,0.14); }
+.icon-tile-navy { background: rgba(13,41,82,0.55); }
+.value-card {
+  background: rgba(151,196,89,0.04);
+  border: 0.5px solid rgba(151,196,89,0.14);
+}
+.quote-banner {
+  background: linear-gradient(135deg, rgba(13,41,82,0.95) 0%, rgba(26,77,92,0.88) 100%);
+}
+.cta-banner {
+  background: linear-gradient(135deg, rgba(59,109,17,0.32) 0%, rgba(151,196,89,0.16) 100%);
+  border-top: 1px solid rgba(151,196,89,0.18);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .char-span, .fade-in-el, .reveal { transition: none !important; }
 }
