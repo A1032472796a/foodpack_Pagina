@@ -141,6 +141,28 @@ footer {
   border-top: 1px solid rgba(151,196,89,0.18);
 }
 
+/* ── Página Productos ── */
+.product-hero-green {
+  background: linear-gradient(135deg, var(--green) 0%, var(--olive) 100%);
+}
+.step-circle-navy {
+  background: rgba(13,41,82,0.75);
+  border: 1px solid rgba(151,196,89,0.2);
+}
+.step-circle-green {
+  background: var(--green);
+  color: var(--green-dark);
+}
+.step-line {
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: rgba(151,196,89,0.2);
+  z-index: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .char-span, .fade-in-el, .reveal { transition: none !important; }
 }
