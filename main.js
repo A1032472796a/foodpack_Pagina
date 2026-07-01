@@ -6,7 +6,7 @@ var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 // ---- Animated heading (char-by-char, con las mismas palabras destacadas del original) ----
 var headingEl = document.getElementById('hero-heading');
-var lines = [
+var lines = window.HERO_HEADING_LINES || [
   [ {t:'Sabor sin '}, {t:'huella', c:'#C0DD97'}, {t:'.'} ],
   [ {t:'Empaque sin '}, {t:'culpa', c:'#97C459'}, {t:'.'} ]
 ];
@@ -15,6 +15,7 @@ var initialDelay = 200;
 var line0Length = lines[0].reduce(function(n, s){ return n + s.t.length; }, 0);
 var spans = [];
 
+if (headingEl) {
 lines.forEach(function(segments, lineIndex) {
   var lineDiv = document.createElement('div');
   var charIndex = 0;
@@ -43,6 +44,7 @@ function revealHeading() {
   });
 }
 setTimeout(revealHeading, prefersReduced ? 0 : initialDelay);
+}
 
 // ---- Hero fade-ins ----
 function fadeInAt(id, delay) {
