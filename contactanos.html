@@ -199,6 +199,9 @@
 
         <button type="submit" id="submit-btn" class="w-full px-6 py-3 rounded-lg font-medium text-sm" style="background:var(--navy); color:#fff;">Enviar mensaje →</button>
         <p id="form-status" class="text-sm text-center mt-3 hidden"></p>
+        <a id="whatsapp-followup" href="#" target="_blank" rel="noopener" class="hidden mt-3 items-center justify-center gap-2 w-full px-6 py-3 rounded-lg font-medium text-sm text-white" style="background:#1FA855;">
+          💬 También puedes escribirnos por WhatsApp
+        </a>
         <p class="text-xs text-center mt-3" style="color:var(--ink-muted);">🔒 Tus datos están seguros. No compartimos tu información con terceros.</p>
       </form>
     </div>
@@ -369,6 +372,22 @@
         submitBtn.textContent = 'Enviar mensaje →';
         if (result.ok && result.json.success) {
           showStatus('¡Gracias, ' + nombre + '! Recibimos tu mensaje, te contactaremos pronto.', false);
+
+          var waLines = [
+            'Hola FoodPack J.L., acabo de llenar el formulario en la página:',
+            'Nombre: ' + nombre,
+            empresa ? 'Empresa: ' + empresa : null,
+            'WhatsApp/Teléfono: ' + telefono,
+            'Producto: ' + producto,
+            cantidad ? 'Cantidad aproximada: ' + cantidad : null,
+            mensaje ? 'Detalles: ' + mensaje : null
+          ].filter(function (l) { return l; });
+          var waText = encodeURIComponent(waLines.join('\n'));
+          var waLink = document.getElementById('whatsapp-followup');
+          waLink.href = 'https://wa.me/573204400345?text=' + waText;
+          waLink.classList.remove('hidden');
+          waLink.classList.add('flex');
+
           form.reset();
         } else {
           showStatus('No se pudo enviar. Escríbenos directo por WhatsApp: +57 320 440 0345.', true);
