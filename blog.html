@@ -230,8 +230,9 @@
     <p class="text-sm md:text-base text-white/75 mb-7">Suscríbete y recibe tips de empaque, novedades de productos y ofertas exclusivas en tu correo.</p>
     <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
       <input type="email" id="nl-email" class="newsletter-input" placeholder="tu@correo.com" required>
-      <button type="submit" class="px-6 py-3 rounded-full font-medium text-sm whitespace-nowrap" style="background:var(--green); color:var(--green-dark);">Suscribirme →</button>
+      <button type="submit" id="nl-submit-btn" class="px-6 py-3 rounded-full font-medium text-sm whitespace-nowrap" style="background:var(--green); color:var(--green-dark);">Suscribirme →</button>
     </form>
+    <p id="nl-status" class="text-sm mt-3 hidden"></p>
   </div>
 </div>
 
@@ -242,7 +243,7 @@
     <p class="text-sm md:text-base mb-8" style="color:var(--green-dark); opacity:0.85;">Deja de leer y da el paso. Cotiza hoy y recibe tu primera muestra gratis.</p>
     <div class="flex flex-wrap justify-center gap-4">
       <a href="https://wa.me/573204400345" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white" style="background:#1FA855;">💬 WhatsApp</a>
-      <a href="mailto:foodpackjl@gmail.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white" style="background:var(--navy);">✉️ Enviar correo</a>
+      <a href="contactanos.html#formulario" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white" style="background:var(--navy);">✉️ Enviar correo</a>
     </div>
   </div>
 </section>
@@ -330,17 +331,60 @@
     applyFilter('todos');
   });
 
-  // Newsletter: sin backend, así que abre un correo pre-armado a foodpackjl@gmail.com
-  document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+  // Newsletter: manda un correo automático a foodpackjl@gmail.com via Web3Forms
+  // (misma Access Key que el formulario de Contactanos — una key puede usarse en
+  // varios formularios del mismo sitio, todos llegan al mismo correo configurado).
+  var NL_ACCESS_KEY = '7e7d98f3-2a6c-4556-af07-0448a6c7fb2d';
+
+  var nlForm = document.getElementById('newsletter-form');
+  var nlStatus = document.getElementById('nl-status');
+  var nlBtn = document.getElementById('nl-submit-btn');
+
+  function showNlStatus(message, isError) {
+    nlStatus.textContent = message;
+    nlStatus.style.color = isError ? '#ffb4a8' : '#fff';
+    nlStatus.classList.remove('hidden');
+  }
+
+  nlForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('nl-email').value.trim();
     if (!email || email.indexOf('@') === -1) {
-      alert('Por favor escribe un correo válido.');
+      showNlStatus('Por favor escribe un correo válido.', true);
       return;
     }
-    var subject = encodeURIComponent('Suscripción al newsletter');
-    var body = encodeURIComponent('Quiero suscribirme al newsletter de FoodPack con este correo: ' + email);
-    window.location.href = 'mailto:foodpackjl@gmail.com?subject=' + subject + '&body=' + body;
+
+    nlBtn.disabled = true;
+    nlBtn.textContent = 'Enviando…';
+    nlStatus.classList.add('hidden');
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: NL_ACCESS_KEY,
+        subject: 'Nueva suscripción al newsletter — ' + email,
+        from_name: 'Newsletter FoodPack J.L. (Blog)',
+        email: email,
+        mensaje: 'Alguien se suscribió al newsletter del blog con este correo: ' + email
+      })
+    })
+      .then(function (response) { return response.json().then(function (json) { return { ok: response.ok, json: json }; }); })
+      .then(function (result) {
+        nlBtn.disabled = false;
+        nlBtn.textContent = 'Suscribirme →';
+        if (result.ok && result.json.success) {
+          showNlStatus('¡Listo! Ya quedaste suscrito.', false);
+          nlForm.reset();
+        } else {
+          showNlStatus('No se pudo suscribir, intenta de nuevo.', true);
+        }
+      })
+      .catch(function () {
+        nlBtn.disabled = false;
+        nlBtn.textContent = 'Suscribirme →';
+        showNlStatus('No se pudo suscribir (sin conexión).', true);
+      });
   });
 </script>
 
