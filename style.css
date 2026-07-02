@@ -19,6 +19,9 @@
   --text-cool: #AEB6C2;     /* versión clara de #5A6478 (product-card p / mini-stat lbl) */
   --text-warm: #B7C2A9;     /* versión clara de #3D4D2E (article p) */
   --bg: #070F09;            /* negro con matiz navy/verde, no negro neutro */
+  --offwhite: #FAFAF7;      /* fondo claro original de las secciones de producto */
+  --ink: #16241C;           /* texto oscuro principal sobre fondos claros */
+  --ink-muted: #5B6B60;     /* texto secundario sobre fondos claros */
 }
 
 body {
@@ -192,6 +195,46 @@ footer {
   background: rgba(151,196,89,0.08);
   border: 0.5px solid rgba(151,196,89,0.2);
 }
+
+/* ── Página Blog (fondo claro, solo el hero queda oscuro) ── */
+.blog-grad-light {
+  background: linear-gradient(135deg, var(--green-pale) 0%, var(--green) 100%);
+}
+.filter-pill {
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.15);
+  color: var(--navy);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+.filter-pill.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.filter-pill:hover:not(.active) {
+  background: rgba(13,41,82,0.06);
+}
+.article-card {
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.08);
+  box-shadow: 0 1px 3px rgba(13,41,82,0.06);
+}
+.article-badge {
+  background: #fff;
+  color: var(--navy);
+}
+.blog-newsletter-band { background: var(--navy); }
+.blog-cta-band { background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%); }
+.newsletter-input {
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  color: var(--navy);
+  font-size: 0.875rem;
+  width: 100%;
+}
+.newsletter-input:focus { outline: 2px solid var(--green); }
 
 @media (prefers-reduced-motion: reduce) {
   .char-span, .fade-in-el, .reveal { transition: none !important; }
