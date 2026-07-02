@@ -105,12 +105,13 @@ body {
 }
 
 .stat-card {
-  background: rgba(151,196,89,0.05);
-  border: 0.5px solid rgba(151,196,89,0.18);
+  background: rgba(151,196,89,0.08);
+  border: 1px solid rgba(151,196,89,0.22);
 }
 .product-card {
-  background: rgba(151,196,89,0.04);
-  border: 0.5px solid rgba(151,196,89,0.16);
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.08);
+  box-shadow: 0 1px 3px rgba(13,41,82,0.06);
   border-top: 3px solid transparent;
 }
 .testimonial-card {
@@ -118,39 +119,48 @@ body {
   border: 0.5px solid rgba(151,196,89,0.14);
 }
 footer {
-  background: linear-gradient(180deg, rgba(23,52,4,0.55) 0%, rgba(23,52,4,0.18) 45%, transparent 100%);
+  background: linear-gradient(180deg, var(--green-dark) 0%, var(--bg) 100%);
 }
 
 /* ── Página Nosotros ── */
 .stats-bar {
-  background: linear-gradient(135deg, rgba(13,41,82,0.92) 0%, rgba(23,52,4,0.88) 100%);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--green-dark) 100%);
   border-top: 1px solid rgba(151,196,89,0.15);
   border-bottom: 1px solid rgba(151,196,89,0.15);
 }
 .story-graphic {
   background: linear-gradient(135deg, var(--green-dark), var(--navy));
 }
-.icon-tile-green { background: rgba(151,196,89,0.14); }
-.icon-tile-navy { background: rgba(13,41,82,0.55); }
+.icon-tile-green { background: rgba(151,196,89,0.18); }
+.icon-tile-navy { background: var(--navy); }
 .value-card {
-  background: rgba(151,196,89,0.04);
-  border: 0.5px solid rgba(151,196,89,0.14);
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.08);
+  box-shadow: 0 1px 3px rgba(13,41,82,0.06);
 }
 .quote-banner {
-  background: linear-gradient(135deg, rgba(13,41,82,0.95) 0%, rgba(26,77,92,0.88) 100%);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
 }
 .cta-banner {
-  background: linear-gradient(135deg, rgba(59,109,17,0.32) 0%, rgba(151,196,89,0.16) 100%);
+  background: linear-gradient(135deg, var(--olive) 0%, var(--green-mid) 100%);
   border-top: 1px solid rgba(151,196,89,0.18);
 }
 
 /* ── Página Productos ── */
+.size-pill {
+  background: rgba(151,196,89,0.12);
+  color: var(--navy);
+  border: 1px solid rgba(151,196,89,0.25);
+}
+.features-strip-light {
+  background: #fff;
+  border-bottom: 1px solid rgba(13,41,82,0.08);
+}
 .product-hero-green {
   background: linear-gradient(135deg, var(--green) 0%, var(--olive) 100%);
 }
 .step-circle-navy {
-  background: rgba(13,41,82,0.75);
-  border: 1px solid rgba(151,196,89,0.2);
+  background: var(--navy);
 }
 .step-circle-green {
   background: var(--green);
@@ -168,33 +178,41 @@ footer {
 
 /* ── Página Contactanos ── */
 .form-card {
-  background: rgba(151,196,89,0.045);
-  border: 0.5px solid rgba(151,196,89,0.16);
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.08);
+  box-shadow: 0 2px 10px rgba(13,41,82,0.08);
 }
 .form-input {
   width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(151,196,89,0.18);
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.15);
   border-radius: 0.5rem;
   padding: 0.65rem 0.9rem;
-  color: #fff;
+  color: var(--ink);
   font-size: 0.875rem;
   font-family: inherit;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.form-input::placeholder { color: rgba(255,255,255,0.35); }
+.form-input::placeholder { color: rgba(22,36,28,0.4); }
 .form-input:focus {
   outline: none;
   border-color: var(--green-mid);
-  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(151,196,89,0.15);
 }
-.form-input option { background: #0A1F12; color: #fff; }
+.form-input option { background: #fff; color: var(--ink); }
 .social-btn { transition: transform 0.15s ease, filter 0.15s ease; }
 .social-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .map-card {
-  background: rgba(151,196,89,0.08);
-  border: 0.5px solid rgba(151,196,89,0.2);
+  background: rgba(151,196,89,0.1);
+  border: 1px solid rgba(151,196,89,0.25);
 }
+.contact-card {
+  background: #fff;
+  border: 1px solid rgba(13,41,82,0.08);
+  box-shadow: 0 1px 3px rgba(13,41,82,0.06);
+  transition: box-shadow 0.2s ease;
+}
+.contact-card:hover { box-shadow: 0 4px 12px rgba(13,41,82,0.1); }
 
 /* ── Página Blog (fondo claro, solo el hero queda oscuro) ── */
 .blog-grad-light {
