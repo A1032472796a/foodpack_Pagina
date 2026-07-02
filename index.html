@@ -33,7 +33,7 @@
 
   <div class="relative z-10 flex flex-col min-h-screen">
 
-    <div class="px-6 md:px-12 lg:px-16 pt-6">
+    <div class="px-6 md:px-12 lg:px-16 pt-6 relative">
       <nav class="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
         <div class="text-2xl font-semibold tracking-tight">FoodPack<span style="color:var(--green);">.</span></div>
 
@@ -44,10 +44,22 @@
           <a href="blog.html" class="transition-colors hover:text-[var(--green-pale)]">Blog</a>
         </div>
 
-        <a href="contactanos.html#formulario" class="btn-primary inline-block text-sm font-medium px-6 py-2 rounded-lg" style="background:var(--green); color:var(--green-dark);">
-          Cotizar ahora
-        </a>
+        <div class="flex items-center gap-2">
+          <button id="mobile-menu-btn" class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg shrink-0" aria-label="Abrir menú" aria-expanded="false" style="color:#fff;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <a href="contactanos.html#formulario" class="btn-primary inline-block text-sm font-medium px-4 sm:px-6 py-2 rounded-lg whitespace-nowrap" style="background:var(--green); color:var(--green-dark);">
+            Cotizar ahora
+          </a>
+        </div>
       </nav>
+
+      <div id="mobile-menu" class="hidden md:hidden absolute left-6 right-6 top-full mt-2 liquid-glass rounded-xl p-4 flex flex-col gap-1 text-sm z-50">
+        <a href="productos.html" class="py-2 hover:text-[var(--green-pale)]">Productos</a>
+        <a href="nosotros.html" class="py-2 hover:text-[var(--green-pale)]">Nosotros</a>
+        <a href="contactanos.html#formulario" class="py-2 hover:text-[var(--green-pale)]">Contactanos</a>
+        <a href="blog.html" class="py-2 hover:text-[var(--green-pale)]">Blog</a>
+      </div>
     </div>
 
     <div class="px-6 md:px-12 lg:px-16 flex-1 flex flex-col justify-end pb-14 lg:pb-20">
