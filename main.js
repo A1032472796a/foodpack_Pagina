@@ -19,16 +19,39 @@ if (headingEl) {
 lines.forEach(function(segments, lineIndex) {
   var lineDiv = document.createElement('div');
   var charIndex = 0;
+  var wordWrap = document.createElement('span');
+  wordWrap.style.display = 'inline-block';
+  lineDiv.appendChild(wordWrap);
+
   segments.forEach(function(seg) {
     for (var i = 0; i < seg.t.length; i++) {
       var ch = seg.t[i];
+
+      if (ch === ' ') {
+        // Espacio real (rompible) FUERA de cualquier word-wrap, para que el
+        // navegador solo pueda partir la línea entre palabras, nunca dentro de una.
+        var spaceSpan = document.createElement('span');
+        spaceSpan.className = 'char-span';
+        spaceSpan.textContent = ' ';
+        var spaceDelay = (lineIndex * line0Length * charDelay) + (charIndex * charDelay);
+        spaceSpan.dataset.delay = spaceDelay;
+        lineDiv.appendChild(spaceSpan);
+        spans.push(spaceSpan);
+        charIndex++;
+
+        wordWrap = document.createElement('span');
+        wordWrap.style.display = 'inline-block';
+        lineDiv.appendChild(wordWrap);
+        continue;
+      }
+
       var span = document.createElement('span');
       span.className = 'char-span';
-      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      span.textContent = ch;
       if (seg.c) span.style.color = seg.c;
       var delay = (lineIndex * line0Length * charDelay) + (charIndex * charDelay);
       span.dataset.delay = delay;
-      lineDiv.appendChild(span);
+      wordWrap.appendChild(span);
       spans.push(span);
       charIndex++;
     }
