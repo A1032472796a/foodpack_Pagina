@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — FoodPack J.L.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#fff;">
+
+<!-- ============ HERO (única sección oscura de la página) ============ -->
+<div class="relative overflow-hidden flex flex-col">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-scrim"></div>
+
+  <div class="relative z-10 flex flex-col">
+
+    <div class="px-6 md:px-12 lg:px-16 pt-6">
+      <nav class="liquid-glass rounded-xl px-4 py-2 flex items-center justify-between">
+        <a href="index.html" class="text-2xl font-semibold tracking-tight">FoodPack<span style="color:var(--green);">.</span></a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a href="productos.html" class="transition-colors hover:text-[var(--green-pale)]">Productos</a>
+          <a href="nosotros.html" class="transition-colors hover:text-[var(--green-pale)]">Nosotros</a>
+          <a href="contactanos.html" class="transition-colors hover:text-[var(--green-pale)]">Contactanos</a>
+          <a href="blog.html" class="transition-colors hover:text-[var(--green-pale)]">Blog</a>
+        </div>
+
+        <a href="contactanos.html#formulario" class="btn-primary inline-block text-sm font-medium px-6 py-2 rounded-lg" style="background:var(--green); color:var(--green-dark);">
+          Cotizar ahora
+        </a>
+      </nav>
+    </div>
+
+    <div class="px-6 md:px-12 lg:px-16 pt-20 pb-16 md:pt-28 md:pb-20 max-w-3xl">
+      <div id="hero-badge" class="fade-in-el inline-block liquid-glass rounded-full px-4 py-1.5 mb-6" style="transition-duration:900ms;">
+        <span class="text-xs font-semibold tracking-[0.2em]" style="color:var(--mint-soft);">BLOG &amp; CONSEJOS</span>
+      </div>
+
+      <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-normal mb-5" style="letter-spacing: -0.04em;"></h1>
+
+      <p id="hero-sub" class="fade-in-el text-base md:text-lg max-w-xl" style="transition-duration:1000ms; color:var(--sky);">
+        Consejos prácticos, tendencias en empaques sostenibles y todo lo que necesitas saber para presentar tu comida como un profesional.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ FILTROS DE CATEGORÍA ============ -->
+<div class="bg-white border-b border-black/5 px-6 md:px-12 lg:px-16 py-5">
+  <div class="flex flex-wrap gap-2.5 max-w-6xl mx-auto">
+    <button class="filter-pill active rounded-full px-4 py-2 text-sm font-medium" data-filter="todos">Todos</button>
+    <button class="filter-pill rounded-full px-4 py-2 text-sm font-medium" data-filter="sostenibilidad">Sostenibilidad</button>
+    <button class="filter-pill rounded-full px-4 py-2 text-sm font-medium" data-filter="consejos">Consejos de negocio</button>
+    <button class="filter-pill rounded-full px-4 py-2 text-sm font-medium" data-filter="empaques">Empaques</button>
+    <button class="filter-pill rounded-full px-4 py-2 text-sm font-medium" data-filter="comida-rapida">Comida rápida</button>
+    <button class="filter-pill rounded-full px-4 py-2 text-sm font-medium" data-filter="foodpack">Noticias FoodPack</button>
+  </div>
+</div>
+
+<!-- ============ CONTENIDO (fondo claro) ============ -->
+<div style="background:var(--offwhite);">
+
+  <!-- Artículo destacado -->
+  <section class="px-6 md:px-12 lg:px-16 pt-16 pb-4 md:pt-20">
+    <div data-category="sostenibilidad" class="article-card rounded-2xl overflow-hidden max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2">
+      <div class="story-graphic relative h-64 md:h-auto flex items-center justify-center">
+        <span class="article-badge absolute top-5 left-5 rounded-full px-3 py-1 text-xs font-semibold" style="background:var(--green); color:var(--green-dark);">★ ARTÍCULO DESTACADO</span>
+        <span class="text-7xl">🍔</span>
+      </div>
+      <div class="p-8 md:p-10 flex flex-col justify-center">
+        <div class="mb-3">
+          <span class="article-badge inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wide" style="background:rgba(151,196,89,0.15); color:var(--green-mid);">SOSTENIBILIDAD</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4" style="color:var(--navy); letter-spacing:-0.01em;">Por qué el papel biodegradable es el futuro del empaque para comida rápida</h2>
+        <p class="text-sm md:text-base leading-relaxed mb-6" style="color:var(--ink-muted);">El plástico de un solo uso está siendo prohibido en más de 60 países. En Colombia, la tendencia ya llegó y los negocios de comida rápida que no se adapten van a quedar atrás.</p>
+        <div class="flex flex-wrap gap-4 text-xs mb-6" style="color:var(--ink-muted);">
+          <span>🗓 Mayo 2025</span>
+          <span>⏱ 5 min de lectura</span>
+          <span>👁 1.240 vistas</span>
+        </div>
+        <a href="#" class="inline-block w-fit px-6 py-3 rounded-full font-medium text-sm text-white" style="background:var(--navy);">Leer artículo completo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artículos recientes -->
+  <section class="px-6 md:px-12 lg:px-16 py-16 md:py-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl md:text-3xl font-semibold" style="color:var(--navy);">Artículos recientes</h2>
+        <button id="ver-todos" class="text-sm font-medium" style="color:var(--green-mid);">Ver todos →</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article data-category="sostenibilidad" class="article-card rounded-2xl overflow-hidden">
+          <div class="story-graphic relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">SOSTENIBILIDAD</span>
+            <span class="text-5xl">🌱</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">¿Qué significa que un papel sea realmente biodegradable?</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">No todo lo que dice «eco» en la etiqueta lo es de verdad. Te enseñamos a leer las certificaciones.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Abril 2025 · 4 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+        <article data-category="consejos" class="article-card rounded-2xl overflow-hidden">
+          <div class="product-hero-green relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">CONSEJOS</span>
+            <span class="text-5xl">🍟</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">Cómo el empaque correcto puede aumentar tus ventas un 30%</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">La presentación de tus productos impacta directamente en la percepción de tu marca.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Marzo 2025 · 6 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+        <article data-category="empaques" class="article-card rounded-2xl overflow-hidden">
+          <div class="blog-grad-light relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">EMPAQUES</span>
+            <span class="text-5xl">🏷️</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">5 razones para personalizar tus láminas con el logo de tu negocio</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">El branding no es solo para grandes empresas. Un empaque con tu logo convierte cada pedido en publicidad.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Febrero 2025 · 3 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+        <article data-category="tendencias" class="article-card rounded-2xl overflow-hidden">
+          <div class="story-graphic relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">TENDENCIAS</span>
+            <span class="text-5xl">📊</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">Regulación de plásticos en Colombia: qué le aplica a tu negocio</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">La Ley 2232 de 2022 entró en vigencia. Te explicamos qué productos están prohibidos y cómo adaptarte.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Enero 2025 · 7 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+        <article data-category="comida-rapida" class="article-card rounded-2xl overflow-hidden">
+          <div class="product-hero-green relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">COMIDA RÁPIDA</span>
+            <span class="text-5xl">🍔</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">El papel antigraso ideal para hamburguesas: cómo elegirlo</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">Gramaje, recubrimiento, resistencia al calor... hay varios factores que determinan si una lámina sirve.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Diciembre 2024 · 5 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+        <article data-category="foodpack" class="article-card rounded-2xl overflow-hidden">
+          <div class="story-graphic relative h-40 flex items-center justify-center">
+            <span class="article-badge absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-semibold tracking-wide">FOODPACK</span>
+            <span class="text-5xl">🏆</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold mb-2" style="color:var(--navy);">Cumplimos 8 años: lo que aprendimos fabricando empaques en Colombia</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--ink-muted);">8 años de trabajo, más de 500 clientes y millones de láminas entregadas. Jairo L. comparte los aprendizajes.</p>
+            <div class="flex items-center justify-between text-xs" style="color:var(--ink-muted);">
+              <span>Noviembre 2024 · 8 min</span>
+              <a href="#" class="font-medium" style="color:var(--green-mid);">Leer →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p id="no-results" class="hidden text-center text-sm py-16" style="color:var(--ink-muted);">No hay artículos en esta categoría todavía.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ NEWSLETTER ============ -->
+<div class="blog-newsletter-band px-6 md:px-12 lg:px-16 py-16">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-2xl md:text-3xl font-semibold text-white mb-3">📬 Recibe consejos cada mes</h2>
+    <p class="text-sm md:text-base text-white/75 mb-7">Suscríbete y recibe tips de empaque, novedades de productos y ofertas exclusivas en tu correo.</p>
+    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input type="email" id="nl-email" class="newsletter-input" placeholder="tu@correo.com" required>
+      <button type="submit" class="px-6 py-3 rounded-full font-medium text-sm whitespace-nowrap" style="background:var(--green); color:var(--green-dark);">Suscribirme →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="blog-cta-band px-6 md:px-12 lg:px-16 py-16">
+  <div class="max-w-2xl mx-auto text-center">
+    <h2 class="text-2xl md:text-3xl font-semibold mb-3" style="color:var(--green-dark);">¿Listo para mejorar tus empaques?</h2>
+    <p class="text-sm md:text-base mb-8" style="color:var(--green-dark); opacity:0.85;">Deja de leer y da el paso. Cotiza hoy y recibe tu primera muestra gratis.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://wa.me/573204400345" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white" style="background:#1FA855;">💬 WhatsApp</a>
+      <a href="mailto:foodpackjl@gmail.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white" style="background:var(--navy);">✉️ Enviar correo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (idéntico al de index.html) ============ -->
+<footer id="contacto" class="px-6 md:px-12 lg:px-16 pt-16 pb-8 border-t border-white/10">
+  <div class="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 max-w-6xl mx-auto mb-12">
+
+    <div>
+      <div class="text-2xl font-semibold tracking-tight mb-3">FoodPack<span style="color:var(--green);"> J.L.</span></div>
+      <p class="text-sm text-white/70 leading-relaxed mb-4">Empaques biodegradables para un futuro sin plástico.</p>
+      <div class="liquid-glass inline-block rounded-full px-3 py-1.5">
+        <span class="text-xs font-medium tracking-wide" style="color:var(--green-pale);">CARBONO NEUTRO</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-xs font-semibold tracking-[0.2em] mb-4" style="color:var(--green);">PRODUCTOS</div>
+      <div class="text-sm text-white/80 leading-loose">Burger Sheets<br>Fries Pack<br>Custom Prints</div>
+    </div>
+
+    <div>
+      <div class="text-xs font-semibold tracking-[0.2em] mb-4" style="color:var(--green);">CONTACTO</div>
+      <div class="text-sm text-white/80 leading-loose">+57 320 440 0345<br>foodpackjl@gmail.com<br>Fontibón, Bogotá</div>
+    </div>
+
+    <div>
+      <div class="text-xs font-semibold tracking-[0.2em] mb-4" style="color:var(--green);">SÍGUENOS</div>
+      <div class="flex gap-2.5">
+        <span class="liquid-glass w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium cursor-pointer" style="color:var(--green);">f</span>
+        <span class="liquid-glass w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium cursor-pointer" style="color:var(--green);">ig</span>
+        <span class="liquid-glass w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium cursor-pointer" style="color:var(--green);">tt</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="max-w-6xl mx-auto pt-6 border-t border-white/10 flex flex-col md:flex-row gap-2 justify-between text-xs text-white/60">
+    <span>© 2026 FoodPack J.L. Empacando con conciencia.</span>
+    <span>Privacidad · Términos</span>
+  </div>
+</footer>
+
+<script>
+  window.HERO_HEADING_LINES = [
+    [ {t:'Ideas para empacar'} ],
+    [ {t:'mejor tu negocio', c:'#97C459'} ]
+  ];
+</script>
+<script src="main.js"></script>
+
+<script>
+  // Filtro de categorías (100% client-side, sin backend)
+  var pills = document.querySelectorAll('.filter-pill');
+  var cards = document.querySelectorAll('[data-category]');
+  var noResults = document.getElementById('no-results');
+
+  function applyFilter(filter) {
+    var visibleCount = 0;
+    cards.forEach(function (card) {
+      var show = (filter === 'todos' || card.dataset.category === filter);
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    noResults.classList.toggle('hidden', visibleCount > 0);
+  }
+
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      pills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      applyFilter(pill.dataset.filter);
+    });
+  });
+
+  document.getElementById('ver-todos').addEventListener('click', function () {
+    pills.forEach(function (p) { p.classList.remove('active'); });
+    document.querySelector('.filter-pill[data-filter="todos"]').classList.add('active');
+    applyFilter('todos');
+  });
+
+  // Newsletter: sin backend, así que abre un correo pre-armado a foodpackjl@gmail.com
+  document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('nl-email').value.trim();
+    if (!email || email.indexOf('@') === -1) {
+      alert('Por favor escribe un correo válido.');
+      return;
+    }
+    var subject = encodeURIComponent('Suscripción al newsletter');
+    var body = encodeURIComponent('Quiero suscribirme al newsletter de FoodPack con este correo: ' + email);
+    window.location.href = 'mailto:foodpackjl@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
