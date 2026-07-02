@@ -93,3 +93,28 @@ if (prefersReduced) {
 } else {
   revealEls.forEach(function(el){ el.classList.add('visible'); });
 }
+
+// ---- Menú móvil (hamburguesa) ----
+var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+var mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuBtn && mobileMenu) {
+  mobileMenuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenuBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  });
+  // Cierra el menú al elegir un link, para que no se quede abierto al navegar
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  // Cierra el menú si se hace click fuera de él
+  document.addEventListener('click', function (e) {
+    if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
