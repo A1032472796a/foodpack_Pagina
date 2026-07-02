@@ -185,7 +185,8 @@
           <textarea id="f-mensaje" class="form-input" rows="4" placeholder="Cuéntanos más sobre lo que necesitas: medidas, personalización, ciudad de entrega, etc."></textarea>
         </div>
 
-        <button type="submit" class="w-full px-6 py-3 rounded-lg font-medium text-sm" style="background:var(--navy); color:#fff;">Enviar mensaje →</button>
+        <button type="submit" id="submit-btn" class="w-full px-6 py-3 rounded-lg font-medium text-sm" style="background:var(--navy); color:#fff;">Enviar mensaje →</button>
+        <p id="form-status" class="text-sm text-center mt-3 hidden"></p>
         <p class="text-xs text-center mt-3" style="color:var(--ink-muted);">🔒 Tus datos están seguros. No compartimos tu información con terceros.</p>
       </form>
     </div>
@@ -282,8 +283,26 @@
 <script src="main.js"></script>
 
 <script>
-  // Envía el formulario como mensaje de WhatsApp pre-armado (sitio estático, sin backend)
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
+  // Envía el formulario por correo a foodpackjl@gmail.com via Web3Forms
+  // (sitio estático sin backend propio — Web3Forms recibe el POST y manda el correo).
+  //
+  // ÚNICO PASO MANUAL: reemplaza el texto de abajo por tu Access Key real.
+  // Se consigue gratis en https://web3forms.com/ (botón "Create Access Key",
+  // escribes foodpackjl@gmail.com, te llega la clave al instante).
+  // Es una clave PÚBLICA — no pasa nada porque quede visible en el código.
+  var WEB3FORMS_ACCESS_KEY = 'PEGA_AQUI_TU_ACCESS_KEY';
+
+  var form = document.getElementById('contact-form');
+  var statusEl = document.getElementById('form-status');
+  var submitBtn = document.getElementById('submit-btn');
+
+  function showStatus(message, isError) {
+    statusEl.textContent = message;
+    statusEl.style.color = isError ? '#B3261E' : 'var(--green-mid)';
+    statusEl.classList.remove('hidden');
+  }
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     var nombre = document.getElementById('f-nombre').value.trim();
@@ -295,23 +314,53 @@
     var mensaje = document.getElementById('f-mensaje').value.trim();
 
     if (!nombre || !telefono || !producto) {
-      alert('Por favor completa los campos obligatorios: nombre, WhatsApp/teléfono y producto de interés.');
+      showStatus('Por favor completa los campos obligatorios: nombre, WhatsApp/teléfono y producto de interés.', true);
       return;
     }
 
-    var lines = [
-      'Hola FoodPack J.L., quiero cotizar:',
-      'Nombre: ' + nombre,
-      empresa ? 'Empresa: ' + empresa : null,
-      'WhatsApp/Teléfono: ' + telefono,
-      correo ? 'Correo: ' + correo : null,
-      'Producto: ' + producto,
-      cantidad ? 'Cantidad aproximada: ' + cantidad : null,
-      mensaje ? 'Detalles: ' + mensaje : null
-    ].filter(function (l) { return l; });
+    if (WEB3FORMS_ACCESS_KEY === 'PEGA_AQUI_TU_ACCESS_KEY') {
+      showStatus('Falta configurar el Access Key de Web3Forms en el código (ver comentario en el script).', true);
+      return;
+    }
 
-    var text = encodeURIComponent(lines.join('\n'));
-    window.open('https://wa.me/573204400345?text=' + text, '_blank');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    statusEl.classList.add('hidden');
+
+    var payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: 'Nueva cotización desde foodpackjl.com — ' + nombre,
+      from_name: 'Formulario web FoodPack J.L.',
+      nombre: nombre,
+      empresa: empresa || '(no indicado)',
+      telefono: telefono,
+      email: correo || '(no indicado)',
+      producto_de_interes: producto,
+      cantidad_aproximada: cantidad || '(no indicado)',
+      mensaje: mensaje || '(sin mensaje adicional)'
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (response) { return response.json().then(function (json) { return { ok: response.ok, json: json }; }); })
+      .then(function (result) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensaje →';
+        if (result.ok && result.json.success) {
+          showStatus('¡Gracias, ' + nombre + '! Recibimos tu mensaje, te contactaremos pronto.', false);
+          form.reset();
+        } else {
+          showStatus('No se pudo enviar. Escríbenos directo por WhatsApp: +57 320 440 0345.', true);
+        }
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensaje →';
+        showStatus('No se pudo enviar (sin conexión). Escríbenos directo por WhatsApp: +57 320 440 0345.', true);
+      });
   });
 </script>
 
