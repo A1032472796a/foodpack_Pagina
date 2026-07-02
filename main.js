@@ -28,15 +28,10 @@ lines.forEach(function(segments, lineIndex) {
       var ch = seg.t[i];
 
       if (ch === ' ') {
-        // Espacio real (rompible) FUERA de cualquier word-wrap, para que el
-        // navegador solo pueda partir la línea entre palabras, nunca dentro de una.
-        var spaceSpan = document.createElement('span');
-        spaceSpan.className = 'char-span';
-        spaceSpan.textContent = ' ';
-        var spaceDelay = (lineIndex * line0Length * charDelay) + (charIndex * charDelay);
-        spaceSpan.dataset.delay = spaceDelay;
-        lineDiv.appendChild(spaceSpan);
-        spans.push(spaceSpan);
+        // Nodo de texto plano (NO span): así tiene ancho visible normal y sigue
+        // siendo un punto válido de salto de línea entre palabras. Un espacio
+        // metido en un span con display:inline-block se colapsa a ancho cero.
+        lineDiv.appendChild(document.createTextNode(' '));
         charIndex++;
 
         wordWrap = document.createElement('span');
